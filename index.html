@@ -1,12 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место</title>
 </head>
-<body>
-
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+  </header>
+  <section class="profile">
+    <img class="profile__avatar" src="./images/profile-image.png" alt="Жак-Ив Кусто">
+    <div class="profile__info">
+      <h1 class="profile__title">Жак-Ив Кусто</h1>
+      <h2 class="profile__subtitle">Исследователь океана</h2>
+      <img class="profile__edit-button" src="./images/edit-button.svg" alt="Редактировать">
+    </div>
+    <img class="profile__add-button" src="./images/add-button.svg" alt="Добавить">
+  </section>
+  <section class="cards">
+    <div class="card">
+      <img class="card__image" src="./images/karachayevsk.png" alt="Карачаевск">
+      <div class="card__group">
+        <h2 class="card__title">Карачаевск</h2>
+        <img class="card__like-button" src="./images/like-button.svg" alt="Лайк">
+      </div>
+    </div>
+    <div class="card">
+      <img class="card__image" src="./images/elbrus.png" alt="Эльбрус">
+      <div class="card__group">
+        <h2 class="card__title">Гора Эльбрус</h2>
+        <img class="card__like-button" src="./images/like-button.svg" alt="Гора Эльбрус">
+      </div>
+    </div>
+    <div class="card">
+      <img class="card__image" src="./images/dombay.png" alt="Домбай">
+      <div class="card__group">
+        <h2 class="card__title">Домбай</h2>
+        <img class="card__like-button" src="./images/like-button.svg" alt="Лайк">
+      </div>
+    </div>
+    <div class="card">
+      <img class="card__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+      <div class="card__group">
+        <h2 class="card__title">Гора Эльбрус</h2>
+        <img class="card__like-button" src="./images/like-button.svg" alt="Лайк">
+      </div>
+    </div>
+    <div class="card">
+      <img class="card__image" src="./images/dombay.png" alt="Домбай">
+      <div class="card__group">
+        <h2 class="card__title">Домбай</h2>
+        <img class="card__like-button" src="./images/like-button.svg" alt="Лайк">
+      </div>
+    </div>
+    <div class="card">
+      <img class="card__image" src="./images/karachayevsk.png" alt="Карачаево-Черкессия">
+      <div class="card__group">
+        <h2 class="card__title">Карачаево-Ч...</h2>
+        <img class="card__like-button" src="./images/like-button.svg" alt="Лайк">
+      </div>
+    </div>
+  </section>
+  <section class="wrapper">
+    <div class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <img class="popup__close-button" src="./images/close-button.svg" alt="Закрыть">
+        <form class="popup__form">
+          <input type="text">
+          <input type="text">
+          <input type="sumbit">
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <p class="footer__copyright">© 2021 Mesto Russia</p>
+  </footer>
 </body>
 </html>
