@@ -5,9 +5,9 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 900px) {
   .profile {
-    padding: 27px;
+    padding: 0 27px;
   }
 }
 
