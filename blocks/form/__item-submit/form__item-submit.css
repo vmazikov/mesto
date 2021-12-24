@@ -16,6 +16,7 @@
   border-radius: 2px;
   opacity: 1;
   transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .form__item-submit:hover {

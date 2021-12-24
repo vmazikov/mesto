@@ -1,5 +1,5 @@
 .footer__copyright {
-  margin: 67px 0 0 0;
+  margin: 0;
   padding: 0;
   font-style: normal;
   font-weight: normal;
@@ -8,14 +8,3 @@
   color: #545454;
 }
 
-@media screen and (max-width:880px) {
-  .footer__copyright {
-    padding-left: 27px;
-  }
-}
-
-@media screen and (max-width:880px) {
-  .footer__copyright {
-    padding-left: 19px;
-  }
-}
