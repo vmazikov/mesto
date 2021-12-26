@@ -35,4 +35,3 @@ popupOverlay.addEventListener('click', function() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 });
-

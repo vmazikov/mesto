@@ -3,8 +3,9 @@
   margin: 0 auto;
   list-style-type: none;
   box-sizing: border-box;
-  width: 282px;
-  height: 361px;
+  max-width: 282px;
+  max-height: 361px;
   background-color: #FFF;
   border-radius: 10px;
+  overflow: hidden;
 }
