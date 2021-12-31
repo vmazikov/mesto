@@ -2,14 +2,21 @@
   margin: auto 0;
   display: grid;
   align-items: baseline;
-  grid-template-columns: repeat(2, minmax(min-content, max-content));
-  grid-template-rows: repeat(2, minmax(min-content, max-content));
+  grid-template-columns: 1fr 24px;
   column-gap: 18px;
   row-gap: 16px;
 }
 
 @media screen and (max-width: 750px) {
   .profile__info {
+    margin: 0 19px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .profile__info {
+    grid-template-columns: 1fr 18px;
     column-gap: 10px;
     row-gap: 14px;
   }
