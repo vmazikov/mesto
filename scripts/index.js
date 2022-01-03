@@ -10,8 +10,8 @@ profileEditButton.addEventListener('click', function() {
 });
 
 let formElement = document.querySelector('.form');
-let nameInput = formElement.querySelector('.form__item-text_name');
-let jobInput = formElement.querySelector('.form__item-text_job');
+let nameInput = formElement.querySelector('.form__item-text_value_name');
+let jobInput = formElement.querySelector('.form__item-text_value_job');
 
 profileTitle.textContent = nameInput.value;
 profileSubtitle.textContent = jobInput.value;
