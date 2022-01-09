@@ -23,52 +23,6 @@
       </div>
       <button type="button" class="profile__add-button"></button>
     </section>
-    <section class="content__section">
-      <ul class="cards">
-        <li class="card">
-          <img class="card__image" src="./images/karachayevsk.png" alt="Карачаевск">
-          <div class="card__group">
-            <h2 class="card__title">Карачаевск</h2>
-            <button type="button" class="card__like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/elbrus.png" alt="Эльбрус">
-          <div class="card__group">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/dombay.png" alt="Домбай">
-          <div class="card__group">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-          <div class="card__group">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/dombay.png" alt="Домбай">
-          <div class="card__group">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/karachayevsk.png" alt="Карачаево-Черкессия">
-          <div class="card__group">
-            <h2 class="card__title">Карачаево-Черкессия</h2>
-            <button type="button" class="card__like-button"></button>
-          </div>
-        </li>
-      </ul>
-    </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2021 Mesto Russia</p>
@@ -85,6 +39,17 @@
       </form>
     </div>
   </div>
+  <template id="cards">
+    <ul class="cards">
+      <li class="card">
+        <img class="card__image" src="" alt="">
+        <div class="card__group">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like-button"></button>
+        </div>
+      </li>
+    </ul>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
