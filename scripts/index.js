@@ -70,8 +70,14 @@ const cardTemplate = document.querySelector('#cards').content;
 
 initialCards.forEach(function (item) {
   const card = cardTemplate.querySelector('.card').cloneNode(true);
+
   card.querySelector('.card__title').textContent = item.name;
   card.querySelector('.card__image').src = item.link;
+
+  card.querySelector('.card__like-button').addEventListener('click', function () {
+    card.querySelector('.card__like-button').classList.add('card__like-button_active');
+  });
+
   cardContainer.append(card);
 });
 
