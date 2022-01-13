@@ -40,6 +40,7 @@ function addCard () {
     const cardImage = card.querySelector('.card__image');
     const cardLike = card.querySelector('.card__like-button');
     cardTitle.textContent = item.name;
+    cardImage.alt = item.name;
     cardImage.src = item.link;
 
     cardLike.addEventListener('click', function () {
