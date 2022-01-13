@@ -29,11 +29,9 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-// Кусок кода отвечающий за стартовое добавление карточек на страницу
 
+// функция стартового добавления карточек из массива initialCards на страницу
 function addCard () {
-
-
   const cardTemplate = document.querySelector('#cards').content;
 
   initialCards.forEach(function (item) {
@@ -50,10 +48,7 @@ function addCard () {
       } else {
         cardLike.classList.add('card__like-button_active');
       }
-
     });
-
-
     cardContainer.append(card);
   });
 }
@@ -144,14 +139,19 @@ function cardAddPopup () {
     card.querySelector('.card__image').src = photoLinkInput.value;
 
     card.querySelector('.card__like-button').addEventListener('click', function () {
-      card.querySelector('.card__like-button').classList.add('card__like-button_active');
+      const cardLike = card.querySelector('.card__like-button');
+      if (cardLike.classList.contains('card__like-button_active')) {
+        cardLike.classList.remove('card__like-button_active');
+      } else {
+        cardLike.classList.add('card__like-button_active');
+      }
     });
+
     cardContainer.prepend(card);
     cardNameInput.value = '';
     photoLinkInput.value = '';
     popupElement.classList.remove('popup_opened');
   });
-
 
   popupCloseButton.addEventListener('click', function () {
     popupElement.classList.remove('popup_opened');
