@@ -165,3 +165,10 @@ function cardAddPopup () {
 };
 cardAddPopup();
 
+let cardLikeButton = document.querySelector('.card__like-button')
+
+cardLikeButton.addEventListener('click', function(event) {
+  if(event.target === cardLikeButton) {
+    cardLikeButton.classList.add('card__like-button_active');
+  }
+});
