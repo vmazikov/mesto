@@ -39,6 +39,7 @@ function addCard () {
     const cardTitle = card.querySelector('.card__title');
     const cardImage = card.querySelector('.card__image');
     const cardLike = card.querySelector('.card__like-button');
+    const cardTrash = card.querySelector('.card__trash');
     cardTitle.textContent = item.name;
     cardImage.alt = item.name;
     cardImage.src = item.link;
@@ -50,6 +51,12 @@ function addCard () {
         cardLike.classList.add('card__like-button_active');
       }
     });
+
+    cardTrash.addEventListener('click', function () {
+      const cardItem = cardTrash.closest('.card');
+      cardItem.remove();
+    });
+
     cardContainer.append(card);
   });
 }
@@ -138,6 +145,12 @@ function cardAddPopup () {
 
     card.querySelector('.card__title').textContent = cardNameInput.value;
     card.querySelector('.card__image').src = photoLinkInput.value;
+    const cardTrash = card.querySelector('.card__trash');
+
+    cardTrash.addEventListener('click', function () {
+      const cardItem = cardTrash.closest('.card');
+      cardItem.remove();
+    });
 
     card.querySelector('.card__like-button').addEventListener('click', function () {
       const cardLike = card.querySelector('.card__like-button');
