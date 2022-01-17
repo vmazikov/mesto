@@ -36,17 +36,17 @@ function addCard () {
     const card = cardTemplate.querySelector('.card').cloneNode(true);
     const cardTitle = card.querySelector('.card__title');
     const cardImage = card.querySelector('.card__image');
-    const cardLike = card.querySelector('.card__like-button');
+    const likeButton = card.querySelector('.card__like-button');
     const cardTrash = card.querySelector('.card__trash');
     cardTitle.textContent = item.name;
     cardImage.alt = item.name;
     cardImage.src = item.link;
     //Цикл установки лайка в зависимости от текушего модификатора
-    cardLike.addEventListener('click', function () {
-      if (cardLike.classList.contains('card__like-button_active')) {
-        cardLike.classList.remove('card__like-button_active');
+    likeButton.addEventListener('click', function () {
+      if (likeButton.classList.contains('card__like-button_active')) {
+        likeButton.classList.remove('card__like-button_active');
       } else {
-        cardLike.classList.add('card__like-button_active');
+        likeButton.classList.add('card__like-button_active');
       }
     });
     //Добавляем функцию удаления карточки через корзину
