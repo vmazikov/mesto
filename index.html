@@ -31,21 +31,31 @@
   <footer class="footer">
     <p class="footer__copyright">© 2021 Mesto Russia</p>
   </footer>
-  <template id="popup">
-    <div class="popup">
-      <div class="popup__overlay"></div>
-      <div class="popup__container">
-        <h2 class="popup__title"></h2>
-        <button type="button" class="popup__close-button"></button>
-        <form class="form" name="">
-          <input type="text" class="form__item-text form__item-text_value_main" name="" placeholder="" value="" required>
-          <input type="text" class="form__item-text form__item-text_value_secondary" name="" placeholder="" value="" required>
-          <button class="form__item-submit" type="submit"></button>
-        </form>
-      </div>
+  <div class="popup">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <button type="button" class="popup__close-button"></button>
+      <form class="form" name="form-profile">
+        <input type="text" class="form__item-text form__item-text_value_name" name="form__item-text_value_name" placeholder="Имя" value="Жак-Ив Кусто" required>
+        <input type="text" class="form__item-text form__item-text_value_job" name="form__item-text_value_job" placeholder="О себе" value="Исследователь океана" required>
+        <button class="form__item-submit" type="submit">Сохранить</button>
+      </form>
     </div>
-  </template>
-  <template id="popup-image">
+  </div>
+  <div class="popup">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <button type="button" class="popup__close-button"></button>
+      <form class="form" name="form-add-card">
+        <input type="text" class="form__item-text form__item-text_value_card-name" name="form__item-text_value_card-name" placeholder="Название" value="" required>
+        <input type="text" class="form__item-text form__item-text_value_link-photo" name="form__item-text_value_link-photo" placeholder="Ссылка на картинку" value="" required>
+        <button class="form__item-submit" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+  <!-- <template id="popup-image">
     <div class="popup popup-image">
       <div class="popup-image__overlay popup__overlay"></div>
         <div class="popup-image__container">
@@ -64,7 +74,7 @@
         <button type="button" class="card__like-button"></button>
       </div>
     </li>
-  </template>
+  </template> -->
   <script src="./scripts/index.js"></script>
 </body>
 </html>
