@@ -1,6 +1,4 @@
-// const page = document.querySelector('.page');
-// const profileEditButton = document.querySelector('.profile__edit-button');
-// const profileAddButton = document.querySelector('.profile__add-button');
+
 // const cardContainer = document.querySelector('.cards');
 // const initialCards = [
 //   {
@@ -79,35 +77,6 @@
 //   });
 // }
 
-//   //Открытие попапа
-//   profileEditButton.addEventListener('click', function () {
-//     popupElement.classList.add('popup_opened');
-//   });
-//   //Присваеваем текст профиля в инпуты
-//   profileTitle.textContent = mainInput.value;
-//   profileSubtitle.textContent = secInput.value;
-//   //Закрытие попапа после нажатия субмита
-//   form.addEventListener('submit',  function (evt) {
-//     evt.preventDefault();
-//     profileTitle.textContent = mainInput.value;
-//     profileSubtitle.textContent = secInput.value;
-//     popupElement.classList.remove('popup_opened');
-//   });
-//   //закрытие попапа по кнопке закрытия с сохранением данных в инпутах из профиля
-//   popupCloseButton.addEventListener('click', function() {
-//     popupElement.classList.remove('popup_opened');
-//     mainInput.value = profileTitle.textContent;
-//     secInput.value = profileSubtitle.textContent;
-//   });
-//   //закрытие попапа по нажатию на фон с сохранением данных в инпутах из профиля
-//   popupOverlay.addEventListener('click', function() {
-//     popupElement.classList.remove('popup_opened');
-//     mainInput.value = profileTitle.textContent;
-//     secInput.value = profileSubtitle.textContent;
-//   });
-
-// profileEditPopup ();
-
 // // Код для добавления попапа добавления карточек
 
 //   //Открытие попапа
@@ -182,4 +151,74 @@
 // };
 // addPopupImage ()
 
+// Попап редактирования профиля
+const page = document.querySelector('.page');
+const profileEditButton = page.querySelector('.profile__edit-button');
+const profileTitle = page.querySelector('.profile__title');
+const profileSubtitle = page.querySelector('.profile__subtitle');
+const popupProfile = page.querySelector('.popup_value_profile');
+const popupProfileForm = popupProfile.querySelector('.form');
+const popupProfileInputName = popupProfile.querySelector('.form__item-text_value_name');
+const popupProfileInputJob = popupProfile.querySelector('.form__item-text_value_job');
+const popupProfileCloseButton = popupProfile.querySelector('.popup__close-button');
+const popupProfileOverlay = popupProfile.querySelector('.popup__overlay');
 
+
+profileTitle.textContent = popupProfileInputName.value;
+profileSubtitle.textContent = popupProfileInputJob.value;
+
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
+};
+
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
+};
+
+profileEditButton.addEventListener('click', function() {
+  openPopup (popupProfile);
+});
+
+popupProfileForm.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = popupProfileInputName.value;
+  profileSubtitle.textContent = popupProfileInputJob.value;
+  closePopup (popupProfile);
+})
+
+popupProfileCloseButton.addEventListener('click', function() {
+  popupProfileInputName.value = profileTitle.textContent;
+  popupProfileInputJob.value = profileSubtitle.textContent;
+  closePopup (popupProfile);
+});
+
+popupProfileOverlay.addEventListener('click', function(){
+  popupProfileInputName.value = profileTitle.textContent;
+  popupProfileInputJob.value = profileSubtitle.textContent;
+  closePopup (popupProfile);
+});
+// Попап добавления карточек
+const profileAddButton = page.querySelector('.profile__add-button');
+const popupAddCard = page.querySelector('.popup_value_add-card');
+const popupAddCardForm = popupAddCard.querySelector('.form');
+const popupAddCardInputCardName = popupAddCard.querySelector('.form__item-text_value_card-name');
+const popupAddCardInputLinkPhoto = popupAddCard.querySelector('.form__item-text_value_link-photo');
+const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close-button');
+const popupAddCardOverlay = popupAddCard.querySelector('.popup__overlay');
+
+profileAddButton.addEventListener('click', function() {
+  openPopup (popupAddCard);
+});
+
+popupAddCardForm.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  closePopup (popupAddCard);
+})
+
+popupAddCardCloseButton.addEventListener('click', function() {
+  closePopup (popupAddCard);
+});
+
+popupAddCardOverlay.addEventListener('click', function(){
+  closePopup (popupAddCard);
+});
