@@ -31,16 +31,16 @@ const initialCards = [
   }
 ];
 //Функция добавления карточек на страницу
-function renderCard (item) {
+function addCard (name, link) {
   const cardTemplate = page.querySelector('#cards').content;
   const card = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = card.querySelector('.card__title');
   const cardImage = card.querySelector('.card__image');
   const likeButton = card.querySelector('.card__like-button');
   const cardTrash = card.querySelector('.card__trash');
-  cardTitle.textContent = item.name;
-  cardImage.alt = item.name;
-  cardImage.src = item.link;
+  cardTitle.textContent = name;
+  cardImage.alt = name;
+  cardImage.src = link;
 
   cardImage.addEventListener('click', () => {
     hangleClickCardImage(cardImage);
@@ -53,11 +53,16 @@ function renderCard (item) {
   cardTrash.addEventListener('click', () => {
     removeElement(cardTrash)
   });
-  cardContainer.prepend(card);
+  return card;
 };
+
+function renderCard (container, card) {
+  container.prepend(addCard (card.name, card.link));
+}
+
 //перебор массива для рендера карточек
-initialCards.forEach(function(initialCards) {
-  renderCard (initialCards);
+initialCards.forEach(function(card) {
+  renderCard(cardContainer, card)
 });
 //Попап редактирования профиля
 const popupProfile = page.querySelector('.popup_value_profile');
@@ -127,7 +132,7 @@ const handlePopupAddCardFormSubmit = evt => {
     name: popupAddCardInputCardName.value,
     link: popupAddCardInputLinkPhoto.value
   };
-  renderCard(card);
+  renderCard(cardContainer, card);
   popupAddCardForm.reset();
   closePopup (popupAddCard);
 };
