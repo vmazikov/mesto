@@ -49,8 +49,8 @@
       <h2 class="popup__title">Новое место</h2>
       <button type="button" class="popup__close-button"></button>
       <form class="form" name="form-add-card">
-        <input type="text" class="form__item-text form__item-text_value_card-name" name="form__item-text_value_card-name" placeholder="Название" value="" required>
-        <input type="text" class="form__item-text form__item-text_value_link-photo" name="form__item-text_value_link-photo" placeholder="Ссылка на картинку" value="" required>
+        <input type="text" class="form__item-text form__item-text_value_card-name" name="form__item-text_value_card-name" placeholder="Название" value="" onchange="replaceCursorSumbitButton()" required>
+        <input type="text" class="form__item-text form__item-text_value_link-photo" name="form__item-text_value_link-photo" placeholder="Ссылка на картинку" value="" onchange="replaceCursorSumbitButton()" required>
         <button class="form__item-submit" type="submit">Создать</button>
       </form>
     </div>

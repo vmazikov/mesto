@@ -1,3 +1,7 @@
 .form__item-submit_disabled {
-    
+    cursor: default;
+}
+
+.form__item-submit_disabled:hover {
+    opacity: 1;
 }
