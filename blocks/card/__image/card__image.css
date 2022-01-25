@@ -5,9 +5,4 @@
   height: 282px;
   cursor: pointer;
   opacity: 1;
-  transition: opacity 0.5s;
-}
-
-.card__image:hover {
-  opacity: .8;
 }
