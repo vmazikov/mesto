@@ -146,7 +146,6 @@ popupProfileOverlay.addEventListener('click', handlePopupProfileClose);
 
 profileAddButton.addEventListener('click', () => {
   openPopup (popupAddCard);
-  replaceCursorSumbitButton();
 });
 
 popupAddCardForm.addEventListener('submit', handlePopupAddCardFormSubmit);
