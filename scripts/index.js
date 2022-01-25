@@ -122,16 +122,6 @@ const handlePopupAddCardFormSubmit = evt => {
   popupAddCardForm.reset();
   closePopup (popupAddCard);
 };
-//Функция смены курсора сабмита при наличии данных в инпутах
-const replaceCursorSumbitButton = () => {
-  if (popupAddCardInputCardName.value.length === 0 && popupAddCardInputLinkPhoto.value.length === 0) {
-    popupAddCardSubmitButton.classList.add('form__item-submit_disabled');
-    popupAddCardSubmitButton.setAttribute('disabled', true);
-  } else {
-    popupAddCardSubmitButton.classList.remove('form__item-submit_disabled');
-    popupAddCardSubmitButton.removeAttribute('disabled');
-  }
-}
 //Функция с помощью которой передаются данные для попапа при нажатии на картинку
 const hangleClickCardImage = (item) => {
   openPopup(imagePopup);
