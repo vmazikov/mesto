@@ -52,10 +52,10 @@
       <button type="button" class="popup__close-button"></button>
       <form class="form" name="form-add-card" novalidate>
         <input type="text" id="card-name-input" class="form__input-text form__input-text_value_card-name" name="form__input-text_value_card-name" placeholder="Название" value="" minlength="2" maxlength="30" required>
-        <span class="form__input-error card-name-input-error"></span>
+        <span class="form__input-error card-name-input-error">Error</span>
         <input type="url" id="link-photo-input" class="form__input-text form__input-text_value_link-photo" name="form__input-text_value_link-photo" placeholder="Ссылка на картинку" value="" required>
-        <span class="form__input-error link-photo-input-error"></span>
-        <button class="form__button-submit" type="submit">Создать</button>
+        <span class="form__input-error link-photo-input-error">Error</span>
+        <button class="form__button-submit form__button-submit_disabled" type="submit">Создать</button>
       </form>
     </div>
   </div>
