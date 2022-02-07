@@ -76,18 +76,24 @@ function addCard (name, link) {
   });
   return card;
 };
-
 function renderCard (container, card) {
   container.prepend(addCard (card.name, card.link));
 };
-
 //откртие попапа
 const openPopup = (elm) => {
   elm.classList.add('popup_opened');
+  document.addEventListener('keydown', handleClickEscape);
 };
 //закрытие попапа
 const closePopup = (elm) => {
   elm.classList.remove('popup_opened');
+};
+//зыкрытие попапа по нажатию на Escape
+const handleClickEscape = (evt) => {
+  if(evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  };
 };
 //Кнопка лайка
 const likeButtonActive = (elm) => {
