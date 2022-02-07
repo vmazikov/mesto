@@ -107,8 +107,7 @@ const removeElement = (elm) => {
 //Функция обработчика субмита попапа редактирования профиля
 const handlePopupProfileFormSubmit = (evt) => {
   evt.preventDefault();
-  profileTitle.textContent = popupProfileInputName.value;
-  profileSubtitle.textContent = popupProfileInputJob.value;
+  insertingDataProfileInput();
   closePopup (popupProfile);
 };
 //Функция закрытия попапа редактирования профиля и сохранение исходных данных в инпутах
@@ -135,7 +134,11 @@ const hangleClickCardImage = (item) => {
   imagePopupItem.alt = item.alt;
   imagePopupTitle.textContent = item.alt;
 };
-
+//вставка данных в профиль из инпутов
+const insertingDataProfileInput = () => {
+  profileTitle.textContent = popupProfileInputName.value;
+  profileSubtitle.textContent = popupProfileInputJob.value;
+};
 //перебор массива для рендера карточек
 initialCards.forEach(function(card) {
   renderCard(cardContainer, card)
@@ -174,7 +177,5 @@ imagePopupOverlay.addEventListener('click', () => {
   closePopup (imagePopup);
 });
 
-//вставка данных в профиль из инпутов
-profileTitle.textContent = popupProfileInputName.value;
-profileSubtitle.textContent = popupProfileInputJob.value;
-
+//вставка данных в профиль при загрузке страницы
+insertingDataProfileInput();
