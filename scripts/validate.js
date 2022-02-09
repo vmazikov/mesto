@@ -1,21 +1,24 @@
+//Конфиг для валидации
 const config = {
-  errorInputClass : 'form__input_type_error',
-}
-
-
+  errorInputText: 'form__input_type_error',
+  inputTextClass: '.form__input',
+  errorInputSpan: 'form__input-error_active',
+  buttonSubmit: '.form__button-submit',
+  buttonSubmitDisabled: 'form__button-submit_disabled',
+};
 //Функция показа ошибки
 const showErrorInput = (formItem, inputItem, errorMessage) => {
   const inputError = formItem.querySelector(`.${inputItem.id}-error`);
-  inputItem.classList.add('form__input_type_error');
+  inputItem.classList.add(config.errorInputText);
   inputError.textContent = errorMessage;
-  inputError.classList.add('form__input-error_active');
+  inputError.classList.add(config.errorInputSpan);
 };
 //Функция скрытия ошибки
 const hideErrorInput = (formItem, inputItem) => {
   const inputError = formItem.querySelector(`.${inputItem.id}-error`);
-  inputItem.classList.remove('form__input_type_error');
+  inputItem.classList.remove(config.errorInputText);
   inputError.textContent = ' ';
-  inputError.classList.remove('form__input-error_active');
+  inputError.classList.remove(config.errorInputSpan);
 };
 //Проверка валидности полей заполнения
 const checkInputValidity = (formItem, inputItem) => {
@@ -27,8 +30,8 @@ const checkInputValidity = (formItem, inputItem) => {
 };
 //Вешаем слушатели на инпуты
 const setEventListeners = (formItem) => {
-  const inputList = Array.from(formItem.querySelectorAll('.form__input'));
-  const button = formItem.querySelector('.form__button-submit');
+  const inputList = Array.from(formItem.querySelectorAll(config.inputTextClass));
+  const button = formItem.querySelector(config.buttonSubmit);
   toggleButton(inputList, button);
   inputList.forEach((inputItem) => {
     inputItem.addEventListener('input', () => {
@@ -61,15 +64,14 @@ const toggleButton = (inputList, button) => {
     activateButton(button);
   };
 };
-
+//Активация кнопки
 const activateButton = (button) => {
-  button.classList.remove('form__button-submit_disabled');
+  button.classList.remove(config.buttonSubmitDisabled);
   button.removeAttribute('disabled');
 };
-
+//Деактивация кнопки
 const deactivateButton = (button) => {
-  button.classList.add('form__button-submit_disabled');
+  button.classList.add(config.buttonSubmitDisabled);
   button.setAttribute('disabled', '');
 };
-
 enableValidation();
