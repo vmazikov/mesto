@@ -1,3 +1,8 @@
+const config = {
+  errorInputClass : 'form__input_type_error',
+}
+
+
 //Функция показа ошибки
 const showErrorInput = (formItem, inputItem, errorMessage) => {
   const inputError = formItem.querySelector(`.${inputItem.id}-error`);
@@ -51,11 +56,20 @@ const hasInvalidInput = (inputList) => {
 //Переключение Кнопки
 const toggleButton = (inputList, button) => {
   if (hasInvalidInput(inputList)) {
-    button.classList.add('form__button-submit_disabled');
-    button.setAttribute('disabled', '');
+    deactivateButton(button);
   } else {
-    button.classList.remove('form__button-submit_disabled');
-    button.removeAttribute('disabled');
+    activateButton(button);
   };
 };
+
+const activateButton = (button) => {
+  button.classList.remove('form__button-submit_disabled');
+  button.removeAttribute('disabled');
+};
+
+const deactivateButton = (button) => {
+  button.classList.add('form__button-submit_disabled');
+  button.setAttribute('disabled', '');
+};
+
 enableValidation();

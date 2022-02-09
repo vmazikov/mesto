@@ -82,7 +82,7 @@ function renderCard (container, card) {
 //откртие попапа
 const openPopup = (elm) => {
   elm.classList.add('popup_opened');
-  document.addEventListener('keydown', handleClickEscape);
+  page.addEventListener('keydown', handleClickEscape);
 };
 //закрытие попапа
 const closePopup = (elm) => {
@@ -91,7 +91,7 @@ const closePopup = (elm) => {
 //зыкрытие попапа по нажатию на Escape
 const handleClickEscape = (evt) => {
   if(evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
+    const popup = page.querySelector('.popup_opened');
     closePopup(popup);
   };
 };
@@ -108,13 +108,13 @@ const removeElement = (elm) => {
 const handlePopupProfileFormSubmit = (evt) => {
   evt.preventDefault();
   insertingDataProfileInput();
-  closePopup (popupProfile);
+  closePopup(popupProfile);
 };
 //Функция закрытия попапа редактирования профиля и сохранение исходных данных в инпутах
 const handlePopupProfileClose = () => {
   popupProfileInputName.value = profileTitle.textContent;
   popupProfileInputJob.value = profileSubtitle.textContent;
-  closePopup (popupProfile);
+  closePopup(popupProfile);
 };
 //Функция обработчика субмита попапа добавления карточки
 const handlePopupAddCardFormSubmit = evt => {
@@ -125,7 +125,7 @@ const handlePopupAddCardFormSubmit = evt => {
   };
   renderCard(cardContainer, card);
   popupAddCardForm.reset();
-  closePopup (popupAddCard);
+  closePopup(popupAddCard);
 };
 //Функция с помощью которой передаются данные для попапа при нажатии на картинку
 const hangleClickCardImage = (item) => {
@@ -154,27 +154,28 @@ popupProfileCloseButton.addEventListener('click', handlePopupProfileClose);
 popupProfileOverlay.addEventListener('click', handlePopupProfileClose);
 
 profileAddButton.addEventListener('click', () => {
-  openPopup (popupAddCard);
+  openPopup(popupAddCard);
+  deactivateButton(popupAddCardSubmitButton);
 });
 
 popupAddCardForm.addEventListener('submit', handlePopupAddCardFormSubmit);
 
 popupAddCardCloseButton.addEventListener('click', () => {
   popupAddCardForm.reset();
-  closePopup (popupAddCard);
+  closePopup(popupAddCard);
 });
 
 popupAddCardOverlay.addEventListener('click', () => {
   popupAddCardForm.reset();
-  closePopup (popupAddCard);
+  closePopup(popupAddCard);
 });
 
 imagePopupCloseButton.addEventListener('click', () => {
-  closePopup (imagePopup);
+  closePopup(imagePopup);
 });
 
 imagePopupOverlay.addEventListener('click', () => {
-  closePopup (imagePopup);
+  closePopup(imagePopup);
 });
 
 //вставка данных в профиль при загрузке страницы
