@@ -37,10 +37,14 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <button type="button" class="popup__close-button"></button>
       <form class="form" name="form-profile" novalidate>
-        <input type="text" id="name-input" class="form__input form__input_value_name" name="form__input_value_name" placeholder="Имя" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
-        <span class="form__input-error name-input-error"> </span>
-        <input type="text" id="job-input" class="form__input form__input_value_job" name="form__input_value_job" placeholder="О себе" value="Исследователь океана" minlength="2" maxlength="200" required>
-        <span class="form__input-error job-input-error"> </span>
+        <label class="form__label">
+          <input type="text" id="name-input" class="form__input form__input_value_name" name="form__input_value_name" placeholder="Имя" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+          <span class="form__input-error name-input-error"> </span>
+        </label>
+        <label class="form__label">
+          <input type="text" id="job-input" class="form__input form__input_value_job" name="form__input_value_job" placeholder="О себе" value="Исследователь океана" minlength="2" maxlength="200" required>
+          <span class="form__input-error job-input-error"> </span>
+        </label>
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>
     </div>
@@ -51,10 +55,14 @@
       <h2 class="popup__title">Новое место</h2>
       <button type="button" class="popup__close-button"></button>
       <form class="form" name="form-add-card" novalidate>
-        <input type="text" id="card-name-input" class="form__input form__input_value_card-name" name="form__input_value_card-name" placeholder="Название" value="" minlength="2" maxlength="30" required>
-        <span class="form__input-error card-name-input-error"> </span>
-        <input type="url" id="link-photo-input" class="form__input form__input_value_link-photo" name="form__input_value_link-photo" placeholder="Ссылка на картинку" value="" required>
-        <span class="form__input-error link-photo-input-error"> </span>
+        <label class="form__label">
+          <input type="text" id="card-name-input" class="form__input form__input_value_card-name" name="form__input_value_card-name" placeholder="Название" value="" minlength="2" maxlength="30" required>
+          <span class="form__input-error card-name-input-error"></span>
+        </label>
+        <label class="form__label">
+          <input type="url" id="link-photo-input" class="form__input form__input_value_link-photo" name="form__input_value_link-photo" placeholder="Ссылка на картинку" value="" required>
+          <span class="form__input-error link-photo-input-error"></span>
+        </label>
         <button class="form__button-submit" type="submit">Создать</button>
       </form>
     </div>
