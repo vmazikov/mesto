@@ -1,5 +1,6 @@
 //Переменные, с которыми работаем
 const page = document.querySelector('.page');
+const popups = page.querySelectorAll('.popup');
 const cardContainer = page.querySelector('.cards');
 const profileEditButton = page.querySelector('.profile__edit-button');
 const profileTitle = page.querySelector('.profile__title');
@@ -68,7 +69,7 @@ function addCard (name, link) {
   });
 
   likeButton.addEventListener('click', () => {
-    likeButtonActive(likeButton);
+    toggleLike(likeButton);
   });
 
   cardTrash.addEventListener('click', () => {
@@ -87,6 +88,7 @@ const openPopup = (elm) => {
 //закрытие попапа
 const closePopup = (elm) => {
   elm.classList.remove('popup_opened');
+  page.removeEventListener('keydown', handleClickEscape);
 };
 //зыкрытие попапа по нажатию на Escape
 const handleClickEscape = (evt) => {
@@ -96,7 +98,7 @@ const handleClickEscape = (evt) => {
   };
 };
 //Кнопка лайка
-const likeButtonActive = (elm) => {
+const toggleLike = (elm) => {
   elm.classList.toggle('card__like-button_active');
 };
 //Удаление карточки
@@ -110,11 +112,11 @@ const handlePopupProfileFormSubmit = (evt) => {
   insertingDataProfileInput();
   closePopup(popupProfile);
 };
-//Функция закрытия попапа редактирования профиля и сохранение исходных данных в инпутах
-const handlePopupProfileClose = () => {
+//Функция открытия попапа редактирования профиля и загрузка данных из инпутов
+const handlePopupProfileOpen = () => {
   popupProfileInputName.value = profileTitle.textContent;
   popupProfileInputJob.value = profileSubtitle.textContent;
-  closePopup(popupProfile);
+  openPopup(popupProfile);
 };
 //Функция обработчика субмита попапа добавления карточки
 const handlePopupAddCardFormSubmit = evt => {
@@ -126,6 +128,7 @@ const handlePopupAddCardFormSubmit = evt => {
   renderCard(cardContainer, card);
   popupAddCardForm.reset();
   closePopup(popupAddCard);
+  deactivateButton(popupAddCardSubmitButton, config);
 };
 //Функция с помощью которой передаются данные для попапа при нажатии на картинку
 const hangleClickCardImage = (item) => {
@@ -144,29 +147,28 @@ initialCards.forEach(function(card) {
   renderCard(cardContainer, card)
 });
 
-profileEditButton.addEventListener('click', () => {
-  openPopup(popupProfile);
+profileEditButton.addEventListener('click', handlePopupProfileOpen);
+popupProfileForm.addEventListener('submit', handlePopupProfileFormSubmit);
+
+popupProfileCloseButton.addEventListener('click', () => {
+  closePopup(popupProfile);
 });
-popupProfileForm.addEventListener('submit', (handlePopupProfileFormSubmit));
 
-popupProfileCloseButton.addEventListener('click', handlePopupProfileClose);
-
-popupProfileOverlay.addEventListener('click', handlePopupProfileClose);
+popupProfileOverlay.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
 
 profileAddButton.addEventListener('click', () => {
   openPopup(popupAddCard);
-  deactivateButton(popupAddCardSubmitButton);
 });
 
 popupAddCardForm.addEventListener('submit', handlePopupAddCardFormSubmit);
 
 popupAddCardCloseButton.addEventListener('click', () => {
-  popupAddCardForm.reset();
   closePopup(popupAddCard);
 });
 
 popupAddCardOverlay.addEventListener('click', () => {
-  popupAddCardForm.reset();
   closePopup(popupAddCard);
 });
 
