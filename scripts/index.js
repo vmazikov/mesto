@@ -19,11 +19,7 @@ const popupAddCardInputLinkPhoto = popupAddCard.querySelector('.form__input_valu
 const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close-button');
 const popupAddCardOverlay = popupAddCard.querySelector('.popup__overlay');
 const popupAddCardSubmitButton = popupAddCard.querySelector('.form__button-submit');
-const imagePopup = page.querySelector('.popup-image');
-const imagePopupItem = imagePopup.querySelector('.popup-image__item');
-const imagePopupTitle = imagePopup.querySelector('.popup-image__title');
-const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-const imagePopupOverlay = imagePopup.querySelector('.popup-image__overlay');
+
 const initialCards = [
   {
     name: 'Байкал',
@@ -53,33 +49,33 @@ const initialCards = [
 
 //Функции:
 //Функция добавления карточек на страницу
-function addCard (name, link) {
-  const cardTemplate = page.querySelector('#cards').content;
-  const card = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardTitle = card.querySelector('.card__title');
-  const cardImage = card.querySelector('.card__image');
-  const likeButton = card.querySelector('.card__like-button');
-  const cardTrash = card.querySelector('.card__trash');
-  cardTitle.textContent = name;
-  cardImage.alt = name;
-  cardImage.src = link;
+// function addCard (name, link) {
+//   const cardTemplate = page.querySelector('#cards').content;
+//   const card = cardTemplate.querySelector('.card').cloneNode(true);
+//   const cardTitle = card.querySelector('.card__title');
+//   const cardImage = card.querySelector('.card__image');
+//   const likeButton = card.querySelector('.card__like-button');
+//   const cardTrash = card.querySelector('.card__trash');
+//   cardTitle.textContent = name;
+//   cardImage.alt = name;
+//   cardImage.src = link;
 
-  cardImage.addEventListener('click', () => {
-    hangleClickCardImage(cardImage);
-  });
+//   cardImage.addEventListener('click', () => {
+//     hangleClickCardImage(cardImage);
+//   });
 
-  likeButton.addEventListener('click', () => {
-    toggleLike(likeButton);
-  });
+//   likeButton.addEventListener('click', () => {
+//     toggleLike(likeButton);
+//   });
 
-  cardTrash.addEventListener('click', () => {
-    removeElement(cardTrash)
-  });
-  return card;
-};
-function renderCard (container, card) {
-  container.prepend(addCard (card.name, card.link));
-};
+//   cardTrash.addEventListener('click', () => {
+//     removeElement(cardTrash)
+//   });
+//   return card;
+// };
+// function renderCard (container, card) {
+//   container.prepend(addCard (card.name, card.link));
+// };
 //откртие попапа
 const openPopup = (elm) => {
   elm.classList.add('popup_opened');
@@ -96,15 +92,6 @@ const handleClickEscape = (evt) => {
     const popup = page.querySelector('.popup_opened');
     closePopup(popup);
   };
-};
-//Кнопка лайка
-const toggleLike = (elm) => {
-  elm.classList.toggle('card__like-button_active');
-};
-//Удаление карточки
-const removeElement = (elm) => {
-  const card = elm.closest('.card');
-  card.remove();
 };
 //Функция обработчика субмита попапа редактирования профиля
 const handlePopupProfileFormSubmit = (evt) => {
@@ -130,22 +117,13 @@ const handlePopupAddCardFormSubmit = evt => {
   closePopup(popupAddCard);
   deactivateButton(popupAddCardSubmitButton, config);
 };
-//Функция с помощью которой передаются данные для попапа при нажатии на картинку
-const hangleClickCardImage = (item) => {
-  openPopup(imagePopup);
-  imagePopupItem.src = item.src;
-  imagePopupItem.alt = item.alt;
-  imagePopupTitle.textContent = item.alt;
-};
+
 //вставка данных в профиль из инпутов
 const insertingDataProfileInput = () => {
   profileTitle.textContent = popupProfileInputName.value;
   profileSubtitle.textContent = popupProfileInputJob.value;
 };
-//перебор массива для рендера карточек
-initialCards.forEach(function(card) {
-  renderCard(cardContainer, card)
-});
+
 
 profileEditButton.addEventListener('click', handlePopupProfileOpen);
 popupProfileForm.addEventListener('submit', handlePopupProfileFormSubmit);
@@ -172,13 +150,6 @@ popupAddCardOverlay.addEventListener('click', () => {
   closePopup(popupAddCard);
 });
 
-imagePopupCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
-
-imagePopupOverlay.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
 
 //вставка данных в профиль при загрузке страницы
 insertingDataProfileInput();
