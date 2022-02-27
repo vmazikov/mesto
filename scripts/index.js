@@ -1,5 +1,5 @@
 //Переменные, с которыми работаем
-const page = document.querySelector('.page');
+export const page = document.querySelector('.page');
 const popups = page.querySelectorAll('.popup');
 const cardContainer = page.querySelector('.cards');
 const profileEditButton = page.querySelector('.profile__edit-button');
@@ -47,42 +47,14 @@ const initialCards = [
   }
 ];
 
-//Функции:
-//Функция добавления карточек на страницу
-// function addCard (name, link) {
-//   const cardTemplate = page.querySelector('#cards').content;
-//   const card = cardTemplate.querySelector('.card').cloneNode(true);
-//   const cardTitle = card.querySelector('.card__title');
-//   const cardImage = card.querySelector('.card__image');
-//   const likeButton = card.querySelector('.card__like-button');
-//   const cardTrash = card.querySelector('.card__trash');
-//   cardTitle.textContent = name;
-//   cardImage.alt = name;
-//   cardImage.src = link;
 
-//   cardImage.addEventListener('click', () => {
-//     hangleClickCardImage(cardImage);
-//   });
-
-//   likeButton.addEventListener('click', () => {
-//     toggleLike(likeButton);
-//   });
-
-//   cardTrash.addEventListener('click', () => {
-//     removeElement(cardTrash)
-//   });
-//   return card;
-// };
-// function renderCard (container, card) {
-//   container.prepend(addCard (card.name, card.link));
-// };
-//откртие попапа
-const openPopup = (elm) => {
+// открытие попапа
+export const openPopup = (elm) => {
   elm.classList.add('popup_opened');
   page.addEventListener('keydown', handleClickEscape);
 };
 //закрытие попапа
-const closePopup = (elm) => {
+export const closePopup = (elm) => {
   elm.classList.remove('popup_opened');
   page.removeEventListener('keydown', handleClickEscape);
 };
@@ -112,10 +84,11 @@ const handlePopupAddCardFormSubmit = evt => {
     name: popupAddCardInputCardName.value,
     link: popupAddCardInputLinkPhoto.value
   };
-  renderCard(cardContainer, card);
+  console.log(card)
+  addCard(card, '#card', cardContainer);
   popupAddCardForm.reset();
   closePopup(popupAddCard);
-  deactivateButton(popupAddCardSubmitButton, config);
+
 };
 
 //вставка данных в профиль из инпутов
@@ -156,9 +129,20 @@ insertingDataProfileInput();
 
 import {Card} from './card.js';
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card')
+
+
+const addCard = (item, cardSelector, container) => {
+  const card = new Card(item, cardSelector)
   const cardElement = card.generateCard();
 
-  cardContainer.prepend(cardElement);
-})
+  renderCard(container, cardElement)
+}
+
+const renderCard = (container, card) => {
+  container.prepend(card)
+};
+
+initialCards.forEach((item) => {
+  addCard(item, '#card', cardContainer)
+});
+

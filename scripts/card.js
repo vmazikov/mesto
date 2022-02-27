@@ -1,9 +1,11 @@
+import {openPopup, closePopup, page} from './index.js'
+
 class Card {
   constructor(data, cardSelector){
     this._title = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._popup = document.querySelector('.popup-image');
+    this._popup = page.querySelector('.popup-image');
     this._popupImage = this._popup.querySelector('.popup-image__item');
     this._popupTitle = this._popup.querySelector('.popup-image__title');
     this._popupCloseButton = this._popup.querySelector('.popup__close-button');
@@ -11,7 +13,7 @@ class Card {
   }
 
   _getTemplate() {
-   const cardElement = document
+   const cardElement = page
    .querySelector(this._cardSelector)
    .content
    .querySelector('.card')
@@ -72,13 +74,13 @@ class Card {
   _handleOpenPopup() {
     this._popupImage.src = this._link;
     this._popupTitle.textContent = this._title;
-    this._popup.classList.add('popup_opened');
+    openPopup(this._popup);
   }
 
   _handleClosePopup() {
+    closePopup(this._popup);
     this._popupImage.src = '';
     this._popupTitle.textContent = '';
-    this._popup.classList.remove('popup_opened');
   }
 }
 
