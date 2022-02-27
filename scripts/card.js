@@ -3,7 +3,7 @@ class Card {
     this._title = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._popup = page.querySelector('.popup-image');
+    this._popup = document.querySelector('.popup-image');
     this._popupImage = this._popup.querySelector('.popup-image__item');
     this._popupTitle = this._popup.querySelector('.popup-image__title');
     this._popupCloseButton = this._popup.querySelector('.popup__close-button');
@@ -80,13 +80,6 @@ class Card {
     this._popupTitle.textContent = '';
     this._popup.classList.remove('popup_opened');
   }
-
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card')
-  const cardElement = card.generateCard();
-
-  cardContainer.prepend(cardElement);
-})
-
+export {Card};

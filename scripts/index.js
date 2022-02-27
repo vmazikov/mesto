@@ -153,3 +153,12 @@ popupAddCardOverlay.addEventListener('click', () => {
 
 //вставка данных в профиль при загрузке страницы
 insertingDataProfileInput();
+
+import {Card} from './card.js';
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '#card')
+  const cardElement = card.generateCard();
+
+  cardContainer.prepend(cardElement);
+})
