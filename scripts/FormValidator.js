@@ -1,78 +1,73 @@
-//Конфиг для валидации
-const config = {
-  errorInputText: 'form__input_type_error',
-  inputTextClass: '.form__input',
-  errorInputSpan: 'form__input-error_active',
-  buttonSubmit: '.form__button-submit',
-  buttonSubmitDisabled: 'form__button-submit_disabled',
-  forms: '.form',
-};
-//Функция показа ошибки
-const showErrorInput = (formItem, inputItem, errorMessage, config) => {
-  const inputError = formItem.querySelector(`.${inputItem.id}-error`);
-  inputError.textContent = errorMessage;
-  inputItem.classList.add(config.errorInputText);
-  inputError.classList.add(config.errorInputSpan);
-};
-//Функция скрытия ошибки
-const hideErrorInput = (formItem, inputItem, config) => {
-  const inputError = formItem.querySelector(`.${inputItem.id}-error`);
-  inputError.textContent = ' ';
-  inputItem.classList.remove(config.errorInputText);
-  inputError.classList.remove(config.errorInputSpan);
-};
-//Проверка валидности полей заполнения
-const checkInputValidity = (formItem, inputItem) => {
-  if (!inputItem.validity.valid) {
-    showErrorInput(formItem, inputItem, inputItem.validationMessage, config);
-  } else {
-    hideErrorInput(formItem, inputItem, config);
+class FormValidator {
+  constructor(config, form) {
+    this._config = config;
+    this._form = form;
   };
-};
-//Вешаем слушатели на инпуты
-const setEventListeners = (formItem, config) => {
-  const inputList = Array.from(formItem.querySelectorAll(config.inputTextClass));
-  const button = formItem.querySelector(config.buttonSubmit);
-  toggleButton(inputList, button, config);
-  inputList.forEach((inputItem) => {
-    inputItem.addEventListener('input', () => {
-      checkInputValidity(formItem, inputItem);
-      toggleButton(inputList, button, config);
+  //Отображение ошибки в форме и вывод сообщения об ошибке
+  _showErrorInput = (inputItem, errorMessage) => {
+    const inputError = this._form.querySelector(`.${inputItem.id}-error`);
+    inputError.textContent = errorMessage;
+    inputItem.classList.add(this._config.errorInputText);
+    inputError.classList.add(this._config.errorInputSpan);
+  };
+  //Скрытие ошибки в форме
+  _hideErrorInput = (inputItem) => {
+    const inputError = this._form.querySelector(`.${inputItem.id}-error`);
+    inputError.textContent = ' ';
+    inputItem.classList.remove(this._config.errorInputText);
+    inputError.classList.remove(this._config.errorInputSpan);
+  };
+  //Проверка инпута на валидность
+  _checkInputValidity = (inputItem) => {
+    if(!inputItem.validity.valid) {
+      this._showErrorInput(inputItem, inputItem.validationMessage)
+    } else {
+      this._hideErrorInput(inputItem)
+    };
+  };
+  //Утсновка слушателей изменения полей
+  _setEventListeners() {
+    this._inputList = Array.from(this._form.querySelectorAll(this._config.inputTextClass));
+    this._button = this._form.querySelector(this._config.buttonSubmit);
+    this._toggleButton();
+    this._inputList.forEach((inputItem) => {
+      inputItem.addEventListener('input', () => {
+        this._checkInputValidity(inputItem);
+        this._toggleButton();
+      });
     });
-  });
-};
-//Проверка валидности формы
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.forms));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
+  };
+  //Функция смены активности кнопки
+  _toggleButton = () => {
+    if (this._hasInvalidInput()) {
+      this._deactivateButton();
+    } else {
+      this._activateButton();
+    };
+  };
+  //Получение валидности инпутов
+  _hasInvalidInput = () => {
+    return this._inputList.some((inputItem) => {
+      return !inputItem.validity.valid;
+    });
+  };
+  //Автивация кнопки
+  _activateButton = () => {
+  this._button.classList.remove(this._config.buttonSubmitDisabled);
+  this._button.removeAttribute('disabled');
+  };
+  //Деактивация кнопки
+  _deactivateButton = () => {
+    this._button.classList.add(this._config.buttonSubmitDisabled);
+    this._button.setAttribute('disabled', '');
+  };
+  //Запуск валидации формы
+  enableValidation() {
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(formElement, config);
-  });
-};
-//Возврат валидности полей
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputItem) => {
-    return !inputItem.validity.valid;
-  });
-};
-//Переключение Кнопки
-const toggleButton = (inputList, button, config) => {
-  if (hasInvalidInput(inputList)) {
-    deactivateButton(button, config);
-  } else {
-    activateButton(button, config);
+    this._setEventListeners();
   };
 };
-//Активация кнопки
-const activateButton = (button, config) => {
-  button.classList.remove(config.buttonSubmitDisabled);
-  button.removeAttribute('disabled');
-};
-//Деактивация кнопки
-const deactivateButton = (button, config) => {
-  button.classList.add(config.buttonSubmitDisabled);
-  button.setAttribute('disabled', '');
-};
-enableValidation(config);
+
+export {FormValidator};

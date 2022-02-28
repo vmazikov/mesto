@@ -1,7 +1,9 @@
 //Переменные, с которыми работаем
-export const page = document.querySelector('.page');
-const popups = page.querySelectorAll('.popup');
+import { FormValidator } from './FormValidator.js';
+import {Card} from './card.js';
+const page = document.querySelector('.page');
 const cardContainer = page.querySelector('.cards');
+//Переменные которые работают с профилем
 const profileEditButton = page.querySelector('.profile__edit-button');
 const profileTitle = page.querySelector('.profile__title');
 const profileSubtitle = page.querySelector('.profile__subtitle');
@@ -12,14 +14,17 @@ const popupProfileInputName = popupProfile.querySelector('.form__input_value_nam
 const popupProfileInputJob = popupProfile.querySelector('.form__input_value_job');
 const popupProfileCloseButton = popupProfile.querySelector('.popup__close-button');
 const popupProfileOverlay = popupProfile.querySelector('.popup__overlay');
+//Перменные для попапа Card
 const popupAddCard = page.querySelector('.popup_value_add-card');
 const popupAddCardForm = popupAddCard.querySelector('.form');
 const popupAddCardInputCardName = popupAddCard.querySelector('.form__input_value_card-name');
 const popupAddCardInputLinkPhoto = popupAddCard.querySelector('.form__input_value_link-photo');
 const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close-button');
 const popupAddCardOverlay = popupAddCard.querySelector('.popup__overlay');
-const popupAddCardSubmitButton = popupAddCard.querySelector('.form__button-submit');
-
+//формы
+const formAddCard = page.querySelector('form[name="form-add-card"]');
+const formProfileEdit = page.querySelector('form[name="form-profile"]');
+//стартовые карточки
 const initialCards = [
   {
     name: 'Байкал',
@@ -46,7 +51,15 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   }
 ];
-
+//Конфиг для валидации форм
+const configValidation = {
+  errorInputText: 'form__input_type_error',
+  inputTextClass: '.form__input',
+  errorInputSpan: 'form__input-error_active',
+  buttonSubmit: '.form__button-submit',
+  buttonSubmitDisabled: 'form__button-submit_disabled',
+  forms: '.form',
+};
 
 // открытие попапа
 export const openPopup = (elm) => {
@@ -84,11 +97,11 @@ const handlePopupAddCardFormSubmit = evt => {
     name: popupAddCardInputCardName.value,
     link: popupAddCardInputLinkPhoto.value
   };
-  console.log(card)
+
   addCard(card, '#card', cardContainer);
   popupAddCardForm.reset();
   closePopup(popupAddCard);
-
+  validationForm(configValidation, formAddCard);
 };
 
 //вставка данных в профиль из инпутов
@@ -96,53 +109,56 @@ const insertingDataProfileInput = () => {
   profileTitle.textContent = popupProfileInputName.value;
   profileSubtitle.textContent = popupProfileInputJob.value;
 };
-
-
-profileEditButton.addEventListener('click', handlePopupProfileOpen);
-popupProfileForm.addEventListener('submit', handlePopupProfileFormSubmit);
-
-popupProfileCloseButton.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
-
-popupProfileOverlay.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
-
-profileAddButton.addEventListener('click', () => {
-  openPopup(popupAddCard);
-});
-
-popupAddCardForm.addEventListener('submit', handlePopupAddCardFormSubmit);
-
-popupAddCardCloseButton.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
-
-popupAddCardOverlay.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
-
-
-//вставка данных в профиль при загрузке страницы
-insertingDataProfileInput();
-
-import {Card} from './card.js';
-
-
-
+//Функция установки валидации
+const validationForm = (config, formSelector) => {
+  const formValidator = new FormValidator(config, formSelector).enableValidation();
+};
+//Создание карточки из класса Card
 const addCard = (item, cardSelector, container) => {
   const card = new Card(item, cardSelector)
   const cardElement = card.generateCard();
 
   renderCard(container, cardElement)
-}
-
+};
+//Функция добавления карточки в html
 const renderCard = (container, card) => {
   container.prepend(card)
 };
-
+//Открытие попапПрофиля
+profileEditButton.addEventListener('click', handlePopupProfileOpen);
+//Отправка попапПрофиля
+popupProfileForm.addEventListener('submit', handlePopupProfileFormSubmit);
+//Закрытие через кнопку попапПрофиля
+popupProfileCloseButton.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
+//Закрытие через фон попап профиля
+popupProfileOverlay.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
+//Открытие попапа добавления карточки
+profileAddButton.addEventListener('click', () => {
+  openPopup(popupAddCard);
+});
+//Обработка формы добавления карточки
+popupAddCardForm.addEventListener('submit', handlePopupAddCardFormSubmit);
+//Закрытие через кнопка попапа добавления карточки
+popupAddCardCloseButton.addEventListener('click', () => {
+  closePopup(popupAddCard);
+});
+//Закрытие через фон попапа добавления карточки
+popupAddCardOverlay.addEventListener('click', () => {
+  closePopup(popupAddCard);
+});
+//Перебор массива с карточками
 initialCards.forEach((item) => {
   addCard(item, '#card', cardContainer)
 });
+//вставка данных в профиль при загрузке страницы
+insertingDataProfileInput();
+//создание коасса валидация формы добавления карточки
+validationForm(configValidation, formAddCard);
+//создание класса валидация формы редактирования профиля
+validationForm(configValidation, formProfileEdit);
 
+export {page};
