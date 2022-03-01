@@ -165,7 +165,6 @@ insertDataProfileInput();
 const addCardFormValidationNewElement = createClassValidationForm(configValidation, formAddCard);
 const addCardFormValidationElemenet = installValidationForm(addCardFormValidationNewElement);
 //создание класса валидация формы редактирования профиля
-createClassValidationForm(createClassValidationForm(configValidation, formProfileEdit))
 const profileFormValidationNewElement = createClassValidationForm(configValidation, formProfileEdit);
 const profileFormValidationElemenet = installValidationForm(profileFormValidationNewElement);
 
