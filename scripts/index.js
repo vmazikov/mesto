@@ -24,13 +24,6 @@ const popupAddCardOverlay = popupAddCard.querySelector('.popup__overlay');
 //формы
 const formAddCard = page.querySelector('form[name="form-add-card"]');
 const formProfileEdit = page.querySelector('form[name="form-profile"]');
-//создание коасса валидация формы добавления карточки
-const addCardFormValidationNewElement = createClassValidationForm(configValidation, formAddCard);
-const addCardFormValidationElemenet = installValidationForm(addCardFormValidationNewElement);
-//создание класса валидация формы редактирования профиля
-createClassValidationForm(createClassValidationForm(configValidation, formProfileEdit))
-const profileFormValidationNewElement = createClassValidationForm(configValidation, formProfileEdit);
-const profileFormValidationElemenet = installValidationForm(profileFormValidationNewElement);
 //стартовые карточки
 const initialCards = [
   {
@@ -168,6 +161,11 @@ initialCards.forEach((item) => {
 });
 //вставка данных в профиль при загрузке страницы
 insertDataProfileInput();
-
+//создание коасса валидация формы добавления карточки
+const addCardFormValidationNewElement = createClassValidationForm(configValidation, formAddCard);
+const addCardFormValidationElemenet = installValidationForm(addCardFormValidationNewElement);
+//создание класса валидация формы редактирования профиля
+const profileFormValidationNewElement = createClassValidationForm(configValidation, formProfileEdit);
+const profileFormValidationElemenet = installValidationForm(profileFormValidationNewElement);
 
 export {page};
