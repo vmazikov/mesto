@@ -1,8 +1,8 @@
 //Переменные, с которыми работаем
 import { FormValidator } from './FormValidator.js';
-import {Card} from './card.js';
+import {Card} from './Card.js';
 const page = document.querySelector('.page');
-const cardContainer = page.querySelector('.cards');
+const cardsContainer = page.querySelector('.cards');
 //Переменные которые работают с профилем
 const profileEditButton = page.querySelector('.profile__edit-button');
 const profileTitle = page.querySelector('.profile__title');
@@ -81,7 +81,7 @@ const handleClickEscape = (evt) => {
 //Функция обработчика субмита попапа редактирования профиля
 const handlePopupProfileFormSubmit = (evt) => {
   evt.preventDefault();
-  insertingDataProfileInput();
+  insertDataProfileInput();
   closePopup(popupProfile);
 };
 //Функция открытия попапа редактирования профиля и загрузка данных из инпутов
@@ -98,20 +98,25 @@ const handlePopupAddCardFormSubmit = evt => {
     link: popupAddCardInputLinkPhoto.value
   };
 
-  addCard(card, '#card', cardContainer);
+  addCard(card, '#card', cardsContainer);
   popupAddCardForm.reset();
   closePopup(popupAddCard);
-  validationForm(configValidation, formAddCard);
+  addCardFormValidationNewElement.enableValidation();
 };
 
 //вставка данных в профиль из инпутов
-const insertingDataProfileInput = () => {
+const insertDataProfileInput = () => {
   profileTitle.textContent = popupProfileInputName.value;
   profileSubtitle.textContent = popupProfileInputJob.value;
 };
 //Функция установки валидации
-const validationForm = (config, formSelector) => {
-  const formValidator = new FormValidator(config, formSelector).enableValidation();
+const createClassValidationForm = (config, formSelector) => {
+  const formValidator = new FormValidator(config, formSelector);
+  return formValidator;
+};
+const installValidationForm = (formValidator) => {
+  const formValidity = formValidator.enableValidation();
+  return formValidity;
 };
 //Создание карточки из класса Card
 const addCard = (item, cardSelector, container) => {
@@ -152,13 +157,16 @@ popupAddCardOverlay.addEventListener('click', () => {
 });
 //Перебор массива с карточками
 initialCards.forEach((item) => {
-  addCard(item, '#card', cardContainer)
+  addCard(item, '#card', cardsContainer)
 });
 //вставка данных в профиль при загрузке страницы
-insertingDataProfileInput();
+insertDataProfileInput();
 //создание коасса валидация формы добавления карточки
-validationForm(configValidation, formAddCard);
+const addCardFormValidationNewElement = createClassValidationForm(configValidation, formAddCard);
+const addCardFormValidationElemenet = installValidationForm(addCardFormValidationNewElement);
 //создание класса валидация формы редактирования профиля
-validationForm(configValidation, formProfileEdit);
+createClassValidationForm(createClassValidationForm(configValidation, formProfileEdit))
+const profileFormValidationNewElement = createClassValidationForm(configValidation, formProfileEdit);
+const profileFormValidationElemenet = installValidationForm(profileFormValidationNewElement);
 
 export {page};

@@ -53,8 +53,8 @@ class FormValidator {
   };
   //Автивация кнопки
   _activateButton = () => {
-  this._button.classList.remove(this._config.buttonSubmitDisabled);
-  this._button.removeAttribute('disabled');
+    this._button.classList.remove(this._config.buttonSubmitDisabled);
+    this._button.removeAttribute('disabled');
   };
   //Деактивация кнопки
   _deactivateButton = () => {

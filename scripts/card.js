@@ -15,13 +15,13 @@ class Card {
   };
   //Получение темплейта карточки
   _getTemplate() {
-   const cardElement = page
-   .querySelector(this._cardSelector)
-   .content
-   .querySelector('.card')
-   .cloneNode(true);
+    const cardElement = page
+    .querySelector(this._cardSelector)
+    .content
+    .querySelector('.card')
+    .cloneNode(true);
 
-   return cardElement;
+    return cardElement;
   };
   //Генерация карточки
   generateCard() {
@@ -77,6 +77,7 @@ class Card {
   //Открытие попапа увеличенной картинки
   _handleOpenPopup() {
     this._popupImage.src = this._link;
+    this._popupImage.alt = this._title;
     this._popupTitle.textContent = this._title;
     openPopup(this._popup);
   };
