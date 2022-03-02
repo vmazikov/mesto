@@ -101,7 +101,7 @@ const handlePopupAddCardFormSubmit = evt => {
   addCard(card, '#card', cardsContainer);
   popupAddCardForm.reset();
   closePopup(popupAddCard);
-  addCardFormValidationNewElement.enableValidation();
+  addCardFormValidation.deactivateButton();
 };
 
 //вставка данных в профиль из инпутов
@@ -113,10 +113,6 @@ const insertDataProfileInput = () => {
 const createClassValidationForm = (config, formSelector) => {
   const formValidator = new FormValidator(config, formSelector);
   return formValidator;
-};
-const installValidationForm = (formValidator) => {
-  const formValidity = formValidator.enableValidation();
-  return formValidity;
 };
 //Создание карточки из класса Card
 const addCard = (item, cardSelector, container) => {
@@ -162,10 +158,10 @@ initialCards.forEach((item) => {
 //вставка данных в профиль при загрузке страницы
 insertDataProfileInput();
 //создание коасса валидация формы добавления карточки
-const addCardFormValidationNewElement = createClassValidationForm(configValidation, formAddCard);
-const addCardFormValidationElemenet = installValidationForm(addCardFormValidationNewElement);
+const addCardFormValidation = createClassValidationForm(configValidation, formAddCard);
+addCardFormValidation.enableValidation();
 //создание класса валидация формы редактирования профиля
-const profileFormValidationNewElement = createClassValidationForm(configValidation, formProfileEdit);
-const profileFormValidationElemenet = installValidationForm(profileFormValidationNewElement);
+const profileFormValidation = createClassValidationForm(configValidation, formProfileEdit);
+profileFormValidation.enableValidation();
 
 export {page};

@@ -40,7 +40,7 @@ class FormValidator {
   //Функция смены активности кнопки
   _toggleButton = () => {
     if (this._hasInvalidInput()) {
-      this._deactivateButton();
+      this.deactivateButton();
     } else {
       this._activateButton();
     };
@@ -57,7 +57,7 @@ class FormValidator {
     this._button.removeAttribute('disabled');
   };
   //Деактивация кнопки
-  _deactivateButton = () => {
+  deactivateButton = () => {
     this._button.classList.add(this._config.buttonSubmitDisabled);
     this._button.setAttribute('disabled', '');
   };
