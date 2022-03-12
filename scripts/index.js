@@ -115,16 +115,9 @@ const createClassValidationForm = (config, formSelector) => {
   return formValidator;
 };
 //Создание карточки из класса Card
-const addCard = (item, cardSelector, container) => {
-  const card = new Card(item, cardSelector)
-  const cardElement = card.generateCard();
 
-  renderCard(container, cardElement)
-};
 //Функция добавления карточки в html
-const renderCard = (container, card) => {
-  container.prepend(card)
-};
+
 //Открытие попапПрофиля
 profileEditButton.addEventListener('click', handlePopupProfileOpen);
 //Отправка попапПрофиля
@@ -152,9 +145,7 @@ popupAddCardOverlay.addEventListener('click', () => {
   closePopup(popupAddCard);
 });
 //Перебор массива с карточками
-initialCards.forEach((item) => {
-  addCard(item, '#card', cardsContainer)
-});
+
 //вставка данных в профиль при загрузке страницы
 insertDataProfileInput();
 //создание коасса валидация формы добавления карточки
@@ -165,3 +156,16 @@ const profileFormValidation = createClassValidationForm(configValidation, formPr
 profileFormValidation.enableValidation();
 
 export {page};
+
+import Section from './Section.js';
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#card');
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+}, cardsContainer);
+
+cardList.renderItems();
