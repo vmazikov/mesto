@@ -97,7 +97,6 @@ const handlePopupAddCardFormSubmit = evt => {
     name: popupAddCardInputCardName.value,
     link: popupAddCardInputLinkPhoto.value
   };
-
   addCard(card, '#card', cardsContainer);
   popupAddCardForm.reset();
   closePopup(popupAddCard);
@@ -161,10 +160,23 @@ export {page};
 
 import Section from './Section.js';
 
+const handleCardClick = (evt) => {
+  const data = {
+    link: evt.target.src,
+    title: evt.target.alt
+  };
+  popupWithImage.open(data);
+};
+
+const openPopupPicture = page.querySelector('.popup-image');
+
+const popupWithImage = new PopupWithImage(openPopupPicture);
+popupWithImage.setEventListeners();
+
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#card');
+    const card = new Card(item, '#card', handleCardClick);
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
   }
@@ -173,6 +185,7 @@ const cardList = new Section({
 cardList.renderItems();
 
 import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 
 const popupProfile = new Popup(popupProfileElement);
 popupProfile.setEventListeners()

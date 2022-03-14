@@ -1,21 +1,14 @@
-//Импорт функция открытия и закрытия попапа, переменная которая содержит страницу
-import {openPopup, closePopup, page} from './index.js'
-
 class Card {
-  constructor(data, cardSelector){
+  constructor(data, cardSelector, handleCardClick){
     this._title = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     //определяем переменные для работы с попапом открытия картинки в больший размер
-    this._popup = page.querySelector('.popup-image');
-    this._popupImage = this._popup.querySelector('.popup-image__item');
-    this._popupTitle = this._popup.querySelector('.popup-image__title');
-    this._popupCloseButton = this._popup.querySelector('.popup__close-button');
-    this._popupOverlay = this._popup.querySelector('.popup-image__overlay');
+    this._handleCardClick = handleCardClick;
   };
   //Получение темплейта карточки
   _getTemplate() {
-    const cardElement = page
+    const cardElement = document
     .querySelector(this._cardSelector)
     .content
     .querySelector('.card')
@@ -52,17 +45,7 @@ class Card {
     });
     //Нажатие на картинку, для открытия попапа
     this._cardImage
-    .addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
-    //Нажатие на закрытие попапа увеличенной картинки
-    this._popupCloseButton.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
-    //Нажатие на фон в попапе увеличенной картинки
-    this._popupOverlay.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
+    .addEventListener('click', this._handleCardClick);
   };
   //Удаление карточки
   _removeElement() {
@@ -73,17 +56,6 @@ class Card {
     this._likeButton
     .classList
     .toggle('card__like-button_active')
-  };
-  //Открытие попапа увеличенной картинки
-  _handleOpenPopup() {
-    this._popupImage.src = this._link;
-    this._popupImage.alt = this._title;
-    this._popupTitle.textContent = this._title;
-    openPopup(this._popup);
-  };
-  //Закрытие попапа увеличенной картинки
-  _handleClosePopup() {
-    closePopup(this._popup);
   };
 };
 
