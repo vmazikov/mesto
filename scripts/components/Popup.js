@@ -1,5 +1,3 @@
-import {page} from './index.js'
-
 export default class Popup {
   constructor(popup) {
     this._popup = popup;
@@ -10,12 +8,12 @@ export default class Popup {
 
   open() {
     this._popup.classList.add('popup_opened');
-    page.addEventListener('keydown', this._handleClickEscape);
+    document.addEventListener('keydown', this._handleClickEscape);
   }
 
   close() {
     this._popup.classList.remove('popup_opened');
-    page.removeEventListener('keydown', this._handleClickEscape);
+    document.removeEventListener('keydown', this._handleClickEscape);
   }
 
   setEventListeners() {

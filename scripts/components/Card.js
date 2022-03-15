@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor(data, cardSelector, handleCardClick){
     this._title = data.name;
     this._link = data.link;
@@ -58,5 +58,3 @@ class Card {
     .toggle('card__like-button_active')
   };
 };
-
-export {Card};
