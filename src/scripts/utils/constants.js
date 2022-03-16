@@ -1,27 +1,34 @@
+const baikal = new URL('../../images/baikal.jpg', import.meta.url);
+const holmogorskiy = new URL('../../images/kholmogorsky-rayon.jpg', import.meta.url);
+const kamchatka = new URL('../../images/kamchatka.jpg', import.meta.url);
+const ivanovo = new URL('../../images/ivanovo.jpg', import.meta.url);
+const chelyabinsk = new URL('../../images/chelyabinsk-oblast.jpg', import.meta.url);
+const arhyz = new URL('../../images/arkhyz.jpg', import.meta.url);
+
 export const initialCards = [
   {
     name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    link: baikal
   },
   {
     name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    link: holmogorskiy
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    link: kamchatka
   },
   {
     name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    link: ivanovo
   },
   {
     name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    link: chelyabinsk
   },
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: arhyz
   }
 ];
 export const configValidation = {
