@@ -31,6 +31,7 @@ const addNewCardPopup = new PopupWithForm(popupAddCardElement, {
     };
     renderCard(card);
     addNewCardPopup.close();
+    addCardFormValidation.deactivateButton();
   }
 });
 //Получение данных из кликнутой картинки для попапа с картинкой
@@ -41,11 +42,18 @@ const handleCardClick = (evt) => {
   };
   popupWithImage.open(data);
 };
-//Получшение карточкии и добавление на страницу
-const renderCard = (item) => {
+//Создание карточки
+const createCard = (item) => {
   const card = new Card(item, '#card', handleCardClick);
   const cardElement = card.generateCard();
-  cardList.addItem(cardElement);
+  console.log(cardElement)
+  return cardElement;
+}
+//Получшение карточкии и добавление на страницу
+const renderCard = (item) => {
+  const card = createCard(item);
+  console.log(card)
+  cardList.addItem(card);
 };
 //Секция в которой генерируются стартовые карточки
 const cardList = new Section({

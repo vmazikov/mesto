@@ -19,14 +19,15 @@ export default class Card {
   //Генерация карточки
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
 
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._title;
-    this._element.querySelector('.card__title').textContent = this._title;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._title;
+    this._cardTitle.textContent = this._title;
 
     this._likeButton = this._element.querySelector('.card__like-button');
     this._cardTrash = this._element.querySelector('.card__trash');
-    this._cardImage = this._element.querySelector('.card__image');
 
     this._setEventListeners();
     return this._element;
