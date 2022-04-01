@@ -75,13 +75,25 @@
         <button type="button" class="popup-image popup__close-button"></button>
       </div>
   </div>
+  <div class="popup popup_value_delete-card">
+    <div class="popup__overlay"></div>
+    <div class="popup__container popup__container_value_delete-card">
+      <h2 class="popup__title popup__title_value_delete-card">Вы уверены?</h2>
+      <button type="button" class="popup__close-button"></button>
+        <button class="form__button-submit form__button-submit_value_delete-card" type="submit">Да</button>
+      </form>
+    </div>
+  </div>
   <template id="card">
     <li class="card">
       <img class="card__image" src="#" alt="">
       <button class="card__trash"></button>
       <div class="card__group">
         <h2 class="card__title"></h2>
-        <button type="button" class="card__like-button"></button>
+        <div сlass="card__like-container">
+          <button type="button" class="card__like-button"></button>
+          <p class="card__like-number"></p>
+        </div>
       </div>
     </li>
   </template>

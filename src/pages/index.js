@@ -46,13 +46,11 @@ const handleCardClick = (evt) => {
 const createCard = (item) => {
   const card = new Card(item, '#card', handleCardClick);
   const cardElement = card.generateCard();
-  console.log(cardElement)
   return cardElement;
 }
 //Получшение карточкии и добавление на страницу
 const renderCard = (item) => {
   const card = createCard(item);
-  console.log(card)
   cardList.addItem(card);
 };
 //Секция в которой генерируются стартовые карточки
@@ -97,3 +95,13 @@ profileEditButton.addEventListener('click', () => {
 addCardButton.addEventListener('click', () => {
   addNewCardPopup.open();
 });
+
+fetch('https://nomoreparties.co/v1/cohort-38/users/me', {
+  headers: {
+    authorization: 'c5574a18-57da-4843-aac5-f62cca636fb4'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
