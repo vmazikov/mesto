@@ -2,6 +2,7 @@ export default class Card {
   constructor(data, cardSelector, handleCardClick){
     this._title = data.name;
     this._link = data.link;
+    this._likes = data.likes;
     this._cardSelector = cardSelector;
     //определяем переменные для работы с попапом открытия картинки в больший размер
     this._handleCardClick = handleCardClick;
@@ -21,10 +22,12 @@ export default class Card {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
     this._cardTitle = this._element.querySelector('.card__title');
+    this._like = this._element.querySelector('.card__like-number');
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
+    this._like.textContent = this._likes.length;
 
     this._likeButton = this._element.querySelector('.card__like-button');
     this._cardTrash = this._element.querySelector('.card__trash');
@@ -58,4 +61,8 @@ export default class Card {
     .classList
     .toggle('card__like-button_active')
   };
+
+  _setLikes() {
+
+  }
 };
