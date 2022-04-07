@@ -25,22 +25,19 @@ const api = new Api({
 });
 //Переменная, которая хранит userId полученный с сервера
 let userId
-//Получение данных профиля
-api.getProfile()
-  .then(res => {
-    userId = res._id;
-    userInfo.setUserInfo(res)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-//Получение карточек
-api.getCards()
-  .then(cardItems => {
-    cardItems.forEach(data => {
-      renderCard(data);
+//Получение данных профиля и добавление карточек
+Promise.all([api.getProfile(), api.getCards()])
+    .then(([userData, cards]) => {
+        userId = userData._id;
+        userInfo.setUserInfo(userData);
+        cards.forEach(data => {
+          renderCard(data)
+        });
     })
-  });
+    .catch((err) => {
+        console.log(err);
+
+    });
 //Попап редактирования аватара
 const editAvatarPopup = new PopupWithForm(popupAvatarEditElement, {
   formSubmitCallBack: (data) => {
@@ -49,6 +46,7 @@ const editAvatarPopup = new PopupWithForm(popupAvatarEditElement, {
       .then(res => {
         userInfo.setUserAvatar(res);
         editAvatarPopup.close();
+        avatarFormValidation.deactivateButton();
       })
       .catch(err => {
         console.log(err)
@@ -87,10 +85,12 @@ const addNewCardPopup = new PopupWithForm(popupAddCardElement, {
         cardList.addNewItem(createCard(res));
         addNewCardPopup.close();
         addCardFormValidation.deactivateButton();
-        addNewCardPopup.renderLoading(false)
       })
       .catch(err => {
       console.log(err)
+      })
+      .finally(() => {
+        addNewCardPopup.renderLoading(false)
       })
 
   }
@@ -132,6 +132,9 @@ const createCard = (item) => {
       api.deleteLike(id)
         .then(res => {
           card.setLikes(res.likes)
+        })
+        .catch(err => {
+          console.log(err)
         })
     } else {
       api.addLike(id)

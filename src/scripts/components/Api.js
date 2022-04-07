@@ -7,24 +7,13 @@ export default class Api {
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    }).then(this._checkResponse)
   }
 
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
   }
 
   editProfile(name, about) {
@@ -35,13 +24,7 @@ export default class Api {
         name: name,
         about: about,
       })
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
   }
 
   addCard(name, link) {
@@ -52,52 +35,28 @@ export default class Api {
         name,
         link,
       })
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
   }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
   }
 
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
   }
 
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
   }
 
   editAvatar(data) {
@@ -107,12 +66,12 @@ export default class Api {
       body: JSON.stringify({
         avatar: data.avatar
       })
-    }).then(res => {
-      if(res.ok) {
-        return res.json();
-      }
-    }).catch(res => {
-      console.log(res.status)
-    })
+    }).then(this._checkResponse)
+  }
+  _checkResponse(res) {
+    if(res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 }
