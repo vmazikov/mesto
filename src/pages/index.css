@@ -41,7 +41,7 @@
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__input-error/_active/form__input-error_active.css);
 @import url(../blocks/form/__button-submit/form__button-submit.css);
-@import url(../blocks/form/__button-submit/_value_link-avatar/form__button_value_link-avatar.css);
+@import url(../blocks/form/__button-submit/_value_link-avatar/form__button-submit_value_link-avatar.css);
 @import url(../blocks/form/__button-submit/_value_delete-card/form__button-submit_value_delete-card.css);
 @import url(../blocks/form/__button-submit/_disabled/form__button-submit_disabled.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);
