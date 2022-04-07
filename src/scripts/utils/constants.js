@@ -1,36 +1,3 @@
-const baikal = new URL('../../images/baikal.jpg', import.meta.url);
-const holmogorskiy = new URL('../../images/kholmogorsky-rayon.jpg', import.meta.url);
-const kamchatka = new URL('../../images/kamchatka.jpg', import.meta.url);
-const ivanovo = new URL('../../images/ivanovo.jpg', import.meta.url);
-const chelyabinsk = new URL('../../images/chelyabinsk-oblast.jpg', import.meta.url);
-const arhyz = new URL('../../images/arkhyz.jpg', import.meta.url);
-
-export const initialCards = [
-  {
-    name: 'Байкал',
-    link: baikal
-  },
-  {
-    name: 'Холмогорский район',
-    link: holmogorskiy
-  },
-  {
-    name: 'Камчатка',
-    link: kamchatka
-  },
-  {
-    name: 'Иваново',
-    link: ivanovo
-  },
-  {
-    name: 'Челябинская область',
-    link: chelyabinsk
-  },
-  {
-    name: 'Архыз',
-    link: arhyz
-  }
-];
 export const configValidation = {
   errorInputText: 'form__input_type_error',
   inputTextClass: '.form__input',
@@ -56,3 +23,4 @@ export const popupProfileInputAbout = popupProfileElement.querySelector('.form__
 export const formAddCard = document.querySelector('form[name="form-add-card"]');
 export const formProfileEdit = document.querySelector('form[name="form-profile"]');
 export const openPopupPicture = document.querySelector('.popup-image');
+export const avatarElement = document.querySelector('.profile__avatar');

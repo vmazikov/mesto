@@ -11,12 +11,11 @@ export default class Api {
       if(res.ok) {
         return res.json();
       }
-    }).catch(res => {
-      console.log(res.status)
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
   }
 
-  getInitialCards() {
+  getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     }).then(res => {
@@ -62,5 +61,58 @@ export default class Api {
     })
   }
 
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+    }).catch(res => {
+      console.log(res.status)
+    })
+  }
 
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+    }).catch(res => {
+      console.log(res.status)
+    })
+  }
+
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+    }).catch(res => {
+      console.log(res.status)
+    })
+  }
+
+  editAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar
+      })
+    }).then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+    }).catch(res => {
+      console.log(res.status)
+    })
+  }
 }
