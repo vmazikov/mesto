@@ -5,6 +5,7 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
+import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js'
 import {
   configValidation, cardsContainer,
   profileEditButton, addCardButton, profileName,
@@ -96,7 +97,7 @@ const addNewCardPopup = new PopupWithForm(popupAddCardElement, {
   }
 });
 //попап удаления карточки
-const deleteCardPopup = new PopupWithForm(popupDeleteCardElement, {})
+const deleteCardPopup = new PopupWithConfirm(popupDeleteCardElement, {})
 //Получение данных из кликнутой картинки для попапа с картинкой
 const handleCardClick = (evt) => {
   const data = {
